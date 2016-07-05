@@ -2,11 +2,14 @@
 
 namespace Novomirskoy\Websocket\PubSubRouter\Router;
 
+use Novomirskoy\Websocket\PubSubRouter\Generator\GeneratorInterface;
+use Novomirskoy\Websocket\PubSubRouter\Matcher\MatcherInterface;
+
 /**
  * Class RouterInterface
  * @package Novomirskoy\Websocket\PubSubRouter\Router
  */
-interface RouterInterface extends MathcherInterface, GeneratorInterface
+interface RouterInterface extends MatcherInterface, GeneratorInterface
 {
     /**
      * @param RouterContext $context

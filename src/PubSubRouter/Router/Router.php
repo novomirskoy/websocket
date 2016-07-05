@@ -2,6 +2,10 @@
 
 namespace Novomirskoy\Websocket\PubSubRouter\Router;
 
+use Novomirskoy\Websocket\PubSubRouter\Generator\GeneratorInterface;
+use Novomirskoy\Websocket\PubSubRouter\Loader\RouteLoader;
+use Novomirskoy\Websocket\PubSubRouter\Matcher\MatcherInterface;
+
 /**
  * Class Router
  * @package Novomirskoy\Websocket\PubSubRouter\Router

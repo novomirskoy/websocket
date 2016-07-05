@@ -34,7 +34,11 @@ class WampRouter
     protected $debug;
 
     /**
-     * @param Router $router
+     * WampRouter constructor.
+     *
+     * @param RouterInterface|null $router
+     * @param $debug
+     * @param LoggerInterface|null $logger
      */
     public function __construct(RouterInterface $router = null, $debug, LoggerInterface $logger = null)
     {

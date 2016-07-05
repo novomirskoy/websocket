@@ -4,6 +4,7 @@ namespace Novomirskoy\Websocket\Server\App\Dispatcher;
 
 use Novomirskoy\Websocket\Router\WampRequest;
 use Novomirskoy\Websocket\RPC\RpcResponse;
+use Novomirskoy\Websocket\Server\App\Registry\RpcRegistry;
 use Ratchet\ConnectionInterface;
 
 /**

@@ -4,10 +4,12 @@ namespace Novomirskoy\Websocket\Server\App\Dispatcher;
 
 use Novomirskoy\Websocket\Router\WampRequest;
 use Novomirskoy\Websocket\Router\WampRouter;
+use Novomirskoy\Websocket\Server\App\Registry\TopicRegistry;
 use Novomirskoy\Websocket\Topic\PushableTopicInterface;
 use Novomirskoy\Websocket\Topic\TopicPeriodicTimer;
 use Novomirskoy\Websocket\Topic\TopicPeriodicTimerInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\Topic;
 use Ratchet\Wamp\TopicManager;
