@@ -2,6 +2,7 @@
 
 namespace Novomirskoy\Websocket\Server\App;
 
+use Novomirskoy\Websocket\Client\ClientStorageInterface;
 use Novomirskoy\Websocket\Event\ClientErrorEvent;
 use Novomirskoy\Websocket\Event\ClientEvent;
 use Novomirskoy\Websocket\Event\Events;

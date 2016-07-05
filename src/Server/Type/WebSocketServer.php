@@ -7,6 +7,7 @@ use Novomirskoy\Websocket\Event\Events;
 use Novomirskoy\Websocket\Event\ServerEvent;
 use Novomirskoy\Websocket\Periodic\PeriodicInterface;
 use Novomirskoy\Websocket\Periodic\PeriodicMemoryUsage;
+use Novomirskoy\Websocket\Pusher\ServerPushHandlerRegistry;
 use Novomirskoy\Websocket\Server\App\Registry\OriginRegistry;
 use Novomirskoy\Websocket\Server\App\Registry\PeriodicRegistry;
 use Novomirskoy\Websocket\Server\App\WampApplication;
