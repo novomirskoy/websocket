@@ -1,6 +1,8 @@
 <?php
 
 namespace Novomirskoy\Websocket\Server;
+
+use Novomirskoy\Websocket\Server\App\Registry\ServerRegistry;
 use Novomirskoy\Websocket\Server\Type\ServerInterface;
 
 /**

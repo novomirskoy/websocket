@@ -2,12 +2,19 @@
 
 namespace Novomirskoy\Websocket\Server\Type;
 
+use Gos\Component\RatchetStack\Builder;
 use Novomirskoy\Websocket\Event\Events;
 use Novomirskoy\Websocket\Event\ServerEvent;
+use Novomirskoy\Websocket\Periodic\PeriodicInterface;
 use Novomirskoy\Websocket\Periodic\PeriodicMemoryUsage;
+use Novomirskoy\Websocket\Server\App\Registry\OriginRegistry;
+use Novomirskoy\Websocket\Server\App\Registry\PeriodicRegistry;
+use Novomirskoy\Websocket\Server\App\WampApplication;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Ratchet\Wamp\TopicManager;
 use React\EventLoop\LoopInterface;
+use React\Socket\Server;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\NullSessionHandler;
 
