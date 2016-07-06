@@ -88,6 +88,8 @@ class WampApplication implements WampServerInterface
      */
     public function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible)
     {
+        $this->logger->info(sprintf('onPublish topic: %s', $topic->getId()));
+        
         $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
         $username = $user instanceof UserInterface ? $user->getUsername() : $user;
 
@@ -135,6 +137,8 @@ class WampApplication implements WampServerInterface
      */
     public function onSubscribe(ConnectionInterface $conn, $topic)
     {
+        $this->logger->info(sprintf('onSubscribe topic: %s', $topic->getId()));
+        
         $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
         $username = $user instanceof UserInterface ? $user->getUsername() : $user;
 
@@ -155,6 +159,8 @@ class WampApplication implements WampServerInterface
      */
     public function onUnSubscribe(ConnectionInterface $conn, $topic)
     {
+        $this->logger->info(sprintf('onUnSubscribe topic: %s', $topic->getId()));
+        
         $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
         $username = $user instanceof UserInterface ? $user->getUsername() : $user;
 
@@ -204,6 +210,8 @@ class WampApplication implements WampServerInterface
      */
     public function onError(ConnectionInterface $conn, \Exception $e)
     {
+        $this->logger->info(sprintf('onError exception: %s', $e->getTraceAsString()));
+        
         $event = new ClientErrorEvent($conn, ClientEvent::ERROR);
         $event->setException($e);
         $this->eventDispatcher->dispatch(Events::CLIENT_ERROR, $event);

@@ -2,6 +2,7 @@
 
 namespace Novomirskoy\Websocket\PubSubRouter\Loader;
 
+use Novomirskoy\Websocket\PubSubRouter\Router\Route;
 use Novomirskoy\Websocket\PubSubRouter\Router\RouteCollection;
 use Symfony\Component\Yaml\Parser;
 
@@ -14,9 +15,11 @@ class YamlFileLoader extends AbstractRouteLoader
     /**
      * @var array
      */
-    private static $availableKeys = array(
-        'channel', 'handler', 'requirements',
-    );
+    private static $availableKeys = [
+        'channel',
+        'handler',
+        'requirements',
+    ];
 
     /**
      * @var Parser
