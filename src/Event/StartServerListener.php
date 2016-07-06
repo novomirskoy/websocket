@@ -3,6 +3,8 @@
 namespace Novomirskoy\Websocket\Event;
 
 use Gos\Component\PnctlEventLoopEmitter\PnctlEmitter;
+use Novomirskoy\Websocket\Pusher\ServerPushHandlerRegistry;
+use Novomirskoy\Websocket\Server\App\Registry\PeriodicRegistry;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use React\EventLoop\LoopInterface;

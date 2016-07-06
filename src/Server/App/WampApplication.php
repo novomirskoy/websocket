@@ -174,6 +174,9 @@ class WampApplication implements WampServerInterface
      */
     public function onOpen(ConnectionInterface $conn)
     {
+        //@todo move to event listener
+        $this->logger->info(sprintf('Connected client %s', $conn->resourceId));
+
         $event = new ClientEvent($conn, ClientEvent::CONNECTED);
         $this->eventDispatcher->dispatch(Events::CLIENT_CONNECTED, $event);
     }
@@ -183,6 +186,9 @@ class WampApplication implements WampServerInterface
      */
     public function onClose(ConnectionInterface $conn)
     {
+        //@todo move to event listener
+        $this->logger->info(sprintf('Disconnected client %s', $conn->resourceId));
+
         foreach ($conn->WAMP->subscriptions as $topic) {
             $wampRequest = $this->wampRouter->match($topic);
             $this->topicDispatcher->onUnSubscribe($conn, $topic, $wampRequest);
