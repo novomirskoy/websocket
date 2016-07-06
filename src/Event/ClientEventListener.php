@@ -33,6 +33,7 @@ class ClientEventListener
     protected $authenticationProvider;
 
     /**
+     * ClientEventListener constructor.
      * @param ClientStorageInterface $clientStorage
      * @param WebsocketAuthenticationProvider $authenticationProvider
      * @param LoggerInterface|null $logger

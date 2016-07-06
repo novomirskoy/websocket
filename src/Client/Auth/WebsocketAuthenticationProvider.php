@@ -1,6 +1,6 @@
 <?php
 
-namespace Gos\Bundle\WebSocketBundle\Client\Auth;
+namespace Novomirskoy\Websocket\Client\Auth;
 
 use Novomirskoy\Websocket\Client\ClientStorageInterface;
 use Novomirskoy\Websocket\Client\Exception\StorageException;
@@ -96,7 +96,7 @@ class WebsocketAuthenticationProvider implements WebsocketAuthenticationProvider
      * @throws StorageException
      * @throws \Exception
      */
-    public function authenticate(ConnectionInterface $conn)
+    public function authenticate(ConnectionInterface $conn)1
     {
         if (1 === count($this->firewalls) && 'ws_firewall' === $this->firewalls[0]) {
             $this->logger->warning(sprintf(

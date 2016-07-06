@@ -31,7 +31,7 @@ class ClientStorage implements ClientStorageInterface
     protected $ttl;
 
     /**
-     * @param int             $ttl
+     * @param int $ttl
      * @param LoggerInterface $logger
      */
     public function __construct($ttl, LoggerInterface $logger = null)
