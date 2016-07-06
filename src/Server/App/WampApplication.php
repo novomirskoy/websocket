@@ -167,8 +167,10 @@ class WampApplication implements WampServerInterface
     {
         $this->logger->info(sprintf('onUnSubscribe topic: %s', $topic->getId()));
         
-        $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
-        $username = $user instanceof UserInterface ? $user->getUsername() : $user;
+//        $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
+//        $username = $user instanceof UserInterface ? $user->getUsername() : $user;
+
+        $username = 'guest';
 
         $this->logger->info(sprintf(
             'User %s unsubscribed to %s',
