@@ -31,6 +31,8 @@ class ConnectionPeriodicTimer implements IteratorAggregate, Countable
     protected $connection;
 
     /**
+     * ConnectionPeriodicTimer constructor.
+     *
      * @param ConnectionInterface $connection
      * @param LoopInterface $loop
      */

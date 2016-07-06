@@ -56,12 +56,14 @@ class WampApplication implements WampServerInterface
     protected $wampRouter;
 
     /**
-     * @param RpcDispatcherInterface   $rpcDispatcher
+     * WampApplication constructor.
+     *
+     * @param RpcDispatcherInterface $rpcDispatcher
      * @param TopicDispatcherInterface $topicDispatcher
      * @param EventDispatcherInterface $eventDispatcher
-     * @param ClientStorageInterface   $clientStorage
-     * @param WampRouter               $wampRouter
-     * @param LoggerInterface          $logger
+     * @param ClientStorageInterface $clientStorage
+     * @param WampRouter $wampRouter
+     * @param LoggerInterface $logger
      */
     public function __construct(
         RpcDispatcherInterface $rpcDispatcher,
@@ -80,11 +82,11 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface|WampConnection        $conn
+     * @param ConnectionInterface|WampConnection $conn
      * @param \Ratchet\Wamp\Topic|string $topic
-     * @param string                     $event
-     * @param array                      $exclude
-     * @param array                      $eligible
+     * @param string $event
+     * @param array  $exclude
+     * @param array  $eligible
      */
     public function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible)
     {
@@ -108,8 +110,8 @@ class WampApplication implements WampServerInterface
 
     /**
      * @param WampRequest $request
-     * @param string      $data
-     * @param string      $provider
+     * @param string $data
+     * @param string $provider
      */
     public function onPush(WampRequest $request, $data, $provider)
     {
@@ -134,7 +136,7 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface|WampConnection        $conn
+     * @param ConnectionInterface|WampConnection $conn
      * @param \Ratchet\Wamp\Topic|string $topic
      */
     public function onSubscribe(ConnectionInterface $conn, $topic)
@@ -158,7 +160,7 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface|WampConnection        $conn
+     * @param ConnectionInterface|WampConnection $conn
      * @param \Ratchet\Wamp\Topic|string $topic
      */
     public function onUnSubscribe(ConnectionInterface $conn, $topic)
@@ -210,7 +212,7 @@ class WampApplication implements WampServerInterface
 
     /**
      * @param ConnectionInterface $conn
-     * @param \Exception          $e
+     * @param \Exception $e
      */
     public function onError(ConnectionInterface $conn, \Exception $e)
     {

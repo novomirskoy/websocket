@@ -32,10 +32,10 @@ class RpcDispatcher implements RpcDispatcherInterface
 
     /**
      * @param ConnectionInterface|WampConnection $conn
-     * @param string              $id
-     * @param string              $topic
-     * @param WampRequest         $request
-     * @param array               $params
+     * @param string $id
+     * @param string $topic
+     * @param WampRequest $request
+     * @param array $params
      */
     public function dispatch(ConnectionInterface $conn, $id, $topic, WampRequest $request, array $params)
     {

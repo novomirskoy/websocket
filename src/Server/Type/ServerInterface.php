@@ -8,8 +8,13 @@ namespace Novomirskoy\Websocket\Server\Type;
  */
 interface ServerInterface
 {
+
     /**
      * Launches the server loop.
+     * 
+     * @param string $host
+     * @param string $port
+     * @param bool $profile
      */
     public function launch($host, $port, $profile);
 

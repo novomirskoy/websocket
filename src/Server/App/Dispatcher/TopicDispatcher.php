@@ -30,7 +30,9 @@ class TopicDispatcher implements TopicDispatcherInterface
      */
     protected $router;
 
-    /** @var  TopicPeriodicTimer */
+    /**
+     * @var TopicPeriodicTimer
+     */
     protected $topicPeriodicTimer;
 
     /**
@@ -38,7 +40,9 @@ class TopicDispatcher implements TopicDispatcherInterface
      */
     protected $logger;
 
-    /** @var  TopicManager */
+    /**
+     * @var TopicManager
+     */
     protected $topicManager;
 
     const SUBSCRIPTION = 'onSubscribe';
@@ -50,11 +54,13 @@ class TopicDispatcher implements TopicDispatcherInterface
     const PUSH = 'onPush';
 
     /**
-     * @param TopicRegistry        $topicRegistry
-     * @param WampRouter           $router
-     * @param TopicPeriodicTimer   $topicPeriodicTimer
-     * @param TopicManager         $topicManager
-     * @param LoggerInterface|null $logger
+     * TopicDispatcher constructor.
+     * 
+     * @param TopicRegistry $topicRegistry
+     * @param WampRouter $router
+     * @param TopicPeriodicTimer $topicPeriodicTimer
+     * @param TopicManager $topicManager
+     * @param LoggerInterface $logger
      */
     public function __construct(
         TopicRegistry $topicRegistry,
@@ -72,7 +78,8 @@ class TopicDispatcher implements TopicDispatcherInterface
 
     /**
      * @param ConnectionInterface $conn
-     * @param Topic               $topic
+     * @param Topic $topic
+     * @param WampRequest $request
      */
     public function onSubscribe(ConnectionInterface $conn, Topic $topic, WampRequest $request)
     {
@@ -82,7 +89,7 @@ class TopicDispatcher implements TopicDispatcherInterface
     /**
      * @param WampRequest  $request
      * @param array|string $data
-     * @param string       $provider
+     * @param string $provider
      */
     public function onPush(WampRequest $request, $data, $provider)
     {
@@ -92,7 +99,8 @@ class TopicDispatcher implements TopicDispatcherInterface
 
     /**
      * @param ConnectionInterface $conn
-     * @param Topic               $topic
+     * @param Topic $topic
+     * @param WampRequest $request
      */
     public function onUnSubscribe(ConnectionInterface $conn, Topic $topic, WampRequest $request)
     {
@@ -102,10 +110,11 @@ class TopicDispatcher implements TopicDispatcherInterface
 
     /**
      * @param ConnectionInterface $conn
-     * @param Topic               $topic
-     * @param string              $event
-     * @param array               $exclude
-     * @param array               $eligible
+     * @param Topic $topic
+     * @param WampRequest $request
+     * @param string $event
+     * @param array $exclude
+     * @param array $eligible
      */
     public function onPublish(ConnectionInterface $conn, Topic $topic, WampRequest $request, $event, array $exclude, array $eligible)
     {
@@ -118,15 +127,18 @@ class TopicDispatcher implements TopicDispatcherInterface
     }
 
     /**
-     * @param string              $calledMethod
-     * @param ConnectionInterface $conn
-     * @param Topic               $topic
-     * @param null|string         $payload
-     * @param string[]|null       $exclude
-     * @param string[]|null       $eligible
-     * @param string|null
-     *
+     * @param string $calledMethod
+     * @param ConnectionInterface|null $conn
+     * @param Topic $topic
+     * @param WampRequest $request
+     * @param string|null $payload
+     * @param string[]|null $exclude
+     * @param string[]|null $eligible
+     * @param string|null $provider
+     * 
      * @return bool
+     * 
+     * @throws \Exception
      */
     public function dispatch($calledMethod, ConnectionInterface $conn = null, Topic $topic, WampRequest $request, $payload = null, $exclude = null, $eligible = null, $provider = null)
     {

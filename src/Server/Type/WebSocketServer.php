@@ -68,10 +68,14 @@ class WebSocketServer implements ServerInterface
      */
     protected $logger;
 
-    /** @var  ServerPushHandlerRegistry */
+    /**
+     * @var ServerPushHandlerRegistry
+     */
     protected $serverPusherHandlerRegistry;
 
-    /** @var  TopicManager */
+    /**
+     * @var TopicManager
+     */
     protected $topicManager;
 
     /**
