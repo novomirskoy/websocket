@@ -6,6 +6,7 @@ use Novomirskoy\Websocket\Router\WampRequest;
 use Novomirskoy\Websocket\RPC\RpcResponse;
 use Novomirskoy\Websocket\Server\App\Registry\RpcRegistry;
 use Ratchet\ConnectionInterface;
+use Ratchet\Wamp\WampConnection;
 
 /**
  * Class RpcDispatcher
@@ -18,7 +19,10 @@ class RpcDispatcher implements RpcDispatcherInterface
      */
     protected $rpcRegistry;
 
+
     /**
+     * RpcDispatcher constructor.
+     * 
      * @param RpcRegistry $rpcRegistry
      */
     public function __construct(RpcRegistry $rpcRegistry)
@@ -27,7 +31,7 @@ class RpcDispatcher implements RpcDispatcherInterface
     }
 
     /**
-     * @param ConnectionInterface $conn
+     * @param ConnectionInterface|WampConnection $conn
      * @param string              $id
      * @param string              $topic
      * @param WampRequest         $request

@@ -90,9 +90,11 @@ class WampApplication implements WampServerInterface
     {
         $this->logger->info(sprintf('onPublish topic: %s', $topic->getId()));
         
-        $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
-        $username = $user instanceof UserInterface ? $user->getUsername() : $user;
+//        $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
+//        $username = $user instanceof UserInterface ? $user->getUsername() : $user;
 
+        $username = 'guest';
+        
         $this->logger->info(sprintf(
             '%s publish to %s',
             $username,
@@ -139,9 +141,11 @@ class WampApplication implements WampServerInterface
     {
         $this->logger->info(sprintf('onSubscribe topic: %s', $topic->getId()));
         
-        $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
-        $username = $user instanceof UserInterface ? $user->getUsername() : $user;
+//        $user = $this->clientStorage->getClient($conn->WAMP->clientStorageId);
+//        $username = $user instanceof UserInterface ? $user->getUsername() : $user;
 
+        $username = 'guest';
+        
         $this->logger->info(sprintf(
             '%s subscribe to %s',
             $username,
