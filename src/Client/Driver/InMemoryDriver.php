@@ -13,9 +13,12 @@ class InMemoryDriver implements DriverInterface
      */
     protected $elements;
 
+    /**
+     * InMemoryDriver constructor.
+     */
     public function __construct()
     {
-        $this->elements = array();
+        $this->elements = [];
     }
 
     /**
@@ -35,7 +38,7 @@ class InMemoryDriver implements DriverInterface
      */
     public function contains($id)
     {
-        return isset($this->elements[$id]);
+        return array_key_exists($id, $this->elements);
     }
 
     /**

@@ -210,7 +210,7 @@ class WampApplication implements WampServerInterface
      */
     public function onError(ConnectionInterface $conn, \Exception $e)
     {
-        $this->logger->info(sprintf('onError exception: %s', $e->getTraceAsString()));
+        $this->logger->info(sprintf('onError exception: %s', $e->getMessage()), ['exception' => $e->getTraceAsString()]);
         
         $event = new ClientErrorEvent($conn, ClientEvent::ERROR);
         $event->setException($e);
