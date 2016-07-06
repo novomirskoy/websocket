@@ -2,6 +2,7 @@
 
 namespace Novomirskoy\Websocket\Topic;
 
+use Novomirskoy\Websocket\Router\WampRequest;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\Topic;
 

@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\Topic;
+use Ratchet\Wamp\WampConnection;
 use Ratchet\Wamp\WampServerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -79,7 +80,7 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface        $conn
+     * @param ConnectionInterface|WampConnection        $conn
      * @param \Ratchet\Wamp\Topic|string $topic
      * @param string                     $event
      * @param array                      $exclude
@@ -117,7 +118,7 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface $conn
+     * @param ConnectionInterface|WampConnection $conn
      * @param string              $id
      * @param Topic               $topic
      * @param array               $params
@@ -129,7 +130,7 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface        $conn
+     * @param ConnectionInterface|WampConnection        $conn
      * @param \Ratchet\Wamp\Topic|string $topic
      */
     public function onSubscribe(ConnectionInterface $conn, $topic)
@@ -149,7 +150,7 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface        $conn
+     * @param ConnectionInterface|WampConnection        $conn
      * @param \Ratchet\Wamp\Topic|string $topic
      */
     public function onUnSubscribe(ConnectionInterface $conn, $topic)
@@ -169,7 +170,7 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface $conn
+     * @param ConnectionInterface|WampConnection $conn
      */
     public function onOpen(ConnectionInterface $conn)
     {
@@ -178,7 +179,7 @@ class WampApplication implements WampServerInterface
     }
 
     /**
-     * @param ConnectionInterface $conn
+     * @param ConnectionInterface|WampConnection $conn
      */
     public function onClose(ConnectionInterface $conn)
     {

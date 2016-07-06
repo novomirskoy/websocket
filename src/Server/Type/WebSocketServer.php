@@ -10,9 +10,12 @@ use Novomirskoy\Websocket\Periodic\PeriodicMemoryUsage;
 use Novomirskoy\Websocket\Pusher\ServerPushHandlerRegistry;
 use Novomirskoy\Websocket\Server\App\Registry\OriginRegistry;
 use Novomirskoy\Websocket\Server\App\Registry\PeriodicRegistry;
+use Novomirskoy\Websocket\Server\App\Stack\OriginCheck;
+use Novomirskoy\Websocket\Server\App\Stack\WampConnectionPeriodicTimer;
 use Novomirskoy\Websocket\Server\App\WampApplication;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Ratchet;
 use Ratchet\Wamp\TopicManager;
 use React\EventLoop\LoopInterface;
 use React\Socket\Server;
@@ -25,7 +28,9 @@ use Symfony\Component\HttpFoundation\Session\Storage\Handler\NullSessionHandler;
  */
 class WebSocketServer implements ServerInterface
 {
-    /** @var  LoopInterface */
+    /**
+     * @var LoopInterface
+     */
     protected $loop;
 
     /**
@@ -70,14 +75,17 @@ class WebSocketServer implements ServerInterface
     protected $topicManager;
 
     /**
-     * @param LoopInterface            $loop
+     * WebSocketServer constructor.
+     *
+     * @param LoopInterface $loop
      * @param EventDispatcherInterface $eventDispatcher
-     * @param PeriodicRegistry         $periodicRegistry
-     * @param WampApplication          $wampApplication
-     * @param OriginRegistry           $originRegistry
-     * @param bool                     $originCheck
-     * @param TopicManager             $topicManager
-     * @param LoggerInterface|null     $logger
+     * @param PeriodicRegistry $periodicRegistry
+     * @param WampApplication $wampApplication
+     * @param OriginRegistry $originRegistry
+     * @param bool $originCheck
+     * @param TopicManager $topicManager
+     * @param ServerPushHandlerRegistry $serverPushHandlerRegistry
+     * @param LoggerInterface|null $logger
      */
     public function __construct(
         LoopInterface $loop,
@@ -111,8 +119,10 @@ class WebSocketServer implements ServerInterface
     }
 
     /**
+     * @param string $host
+     * @param string $port
      * @param bool $profile
-     *
+     * 
      * @throws \React\Socket\ConnectionException
      */
     public function launch($host, $port, $profile)
@@ -146,18 +156,18 @@ class WebSocketServer implements ServerInterface
         $allowedOrigins = array_merge(array('localhost', '127.0.0.1'), $this->originRegistry->getOrigins());
 
         $stack
-            ->push('Ratchet\Server\IoServer', $server, $this->loop)
-            ->push('Ratchet\Http\HttpServer');
+            ->push(Ratchet\Server\IoServer::class, $server, $this->loop)
+            ->push(Ratchet\Http\HttpServer::class);
 
         if ($this->originCheck) {
-            $stack->push('Gos\Bundle\WebSocketBundle\Server\App\Stack\OriginCheck', $allowedOrigins, $this->eventDispatcher);
+            $stack->push(OriginCheck::class, $allowedOrigins, $this->eventDispatcher);
         }
 
         $stack
-            ->push('Ratchet\WebSocket\WsServer')
-            ->push('Gos\Bundle\WebSocketBundle\Server\App\Stack\WampConnectionPeriodicTimer', $this->loop)
-            ->push('Ratchet\Session\SessionProvider', $this->sessionHandler)
-            ->push('Ratchet\Wamp\WampServer', $this->topicManager);
+            ->push(Ratchet\WebSocket\WsServer::class)
+            ->push(WampConnectionPeriodicTimer::class, $this->loop)
+            ->push(Ratchet\Session\SessionProvider::class, $this->sessionHandler)
+            ->push(Ratchet\Wamp\WampServer::class, $this->topicManager);
 
         $app = $stack->resolve($this->wampApplication);
 

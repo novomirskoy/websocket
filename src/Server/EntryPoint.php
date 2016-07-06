@@ -3,6 +3,7 @@
 namespace Novomirskoy\Websocket\Server;
 
 use Novomirskoy\Websocket\Server\App\Registry\ServerRegistry;
+use Novomirskoy\Websocket\Server\Exception\RuntimeException;
 use Novomirskoy\Websocket\Server\Type\ServerInterface;
 
 /**
@@ -17,6 +18,8 @@ class EntryPoint
     protected $serverRegistry;
 
     /**
+     * EntryPoint constructor.
+     * 
      * @param ServerRegistry $serverRegistry
      */
     public function __construct(ServerRegistry $serverRegistry)
@@ -25,8 +28,12 @@ class EntryPoint
     }
 
     /**
-     * @param string $serverName
-     * @param bool   $profile
+     * Launch server
+     * 
+     * @param string|null $serverName
+     * @param string $host
+     * @param string $port
+     * @param bool $profile
      */
     public function launch($serverName, $host, $port, $profile)
     {
@@ -36,8 +43,8 @@ class EntryPoint
             reset($servers);
             $server = current($servers);
         } else {
-            if (!isset($servers[$serverName])) {
-                throw new \RuntimeException(sprintf(
+            if (!array_key_exists($serverName, $servers)) {
+                throw new RuntimeException(sprintf(
                     'Unknown server %s in [%s]',
                     $serverName,
                     implode(', ', array_keys($servers))

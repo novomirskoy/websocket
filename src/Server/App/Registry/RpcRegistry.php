@@ -15,6 +15,9 @@ class RpcRegistry
      */
     protected $rpcHandlers;
 
+    /**
+     * RpcRegistry constructor.
+     */
     public function __construct()
     {
         $this->rpcHandlers = [];
